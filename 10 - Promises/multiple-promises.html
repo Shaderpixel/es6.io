@@ -29,13 +29,16 @@
   const streetCarsPromise = fetch('http://data.ratp.fr/api/datasets/1.0/search/?q=paris');
 
   Promise
-    .all([postsPromise, streetCarsPromise])
-    .then(responses => {
-      return Promise.all(responses.map(res => res.json()))
-    })
-    .then(responses => {
-      console.log(responses);
-    });
+      .all([postsPromise, streetCarsPromise])
+      .then((responses) => {
+      	console.log(responses);
+      	return Promise.all(
+      			responses.map((response) => response.json()) //this returns a promise and not the actual data
+        );
+      })
+      .then((responses) => {
+      	console.log(responses);
+      })
 
 </script>
 </body>

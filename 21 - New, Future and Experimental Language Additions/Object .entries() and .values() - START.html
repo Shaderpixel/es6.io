@@ -15,8 +15,18 @@
     };
 
     // Make a nav for the inventory
-
+    const nav = Object.keys(inventory).map(key => `<li>${key}</li>`).join('');
+    // console.log(nav);
     // tell us how many values we have
+    const total = Object.values(inventory).reduce((a,b) => a + b, 0);
+    // console.log(total);
+
+    // Object.entries(inventory).forEach(([key, value]) => console.log(key,value));
+
+    for(const [key, val] of Object.entries(inventory)) {
+    	if (key === 'hoodies') break;
+    	console.log(key, val);
+    }
   </script>
 </body>
 

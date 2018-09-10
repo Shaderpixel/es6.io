@@ -32,17 +32,45 @@
 <script>
 
   // Select all the list items on the page and convert to array
+  const videos = [].slice.call(document.querySelectorAll('[data-time]'));
 
   // Filter for only the elements that contain the word 'flexbox'
-
+  const flexboxVideos = videos.filter(video => {
+  	const regexp = new RegExp('flexbox', 'gi');
+  	return video.innerText.match(regexp);
+  });
   // map down to a list of time strings
+  let flexboxVideoTimes = flexboxVideos.map(flexboxVideo => flexboxVideo = flexboxVideo.dataset.time);
 
   // map to an array of seconds
+  flexboxVideoTimes = flexboxVideoTimes.map(flexboxVideoTime => {
+  	const minutes = parseInt(flexboxVideoTime.slice(0,flexboxVideoTime.indexOf(':')).trim());
+  	const seconds = parseInt(flexboxVideoTime.slice(flexboxVideoTime.indexOf(':') + 1,).trim());
+  	return (minutes * 60) + seconds;
+  });
 
   // reduce to get total
+  flexboxVideoTimes = flexboxVideoTimes.reduce((a,b) => a += b, 0);
 
   // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+  const videos2 = Array.from(document.querySelectorAll('[data-time]'))
+      .filter(video => video.textContent.includes('Flexbox'))
+      .map(video => video.dataset.time)
+      .map(timeCode => {
+      	const parts = timeCode.split(':').map(part => parseFloat(part));
+      	return parts[0]*60 + parts[1];
+			})
+      .reduce((a,b) => a+=b, 0);
 
+  const videos3 = Array.from(document.querySelectorAll('[data-time]'))
+      .reduce((a,b) => {
+      	if (!b.textContent.includes('Flexbox')) return a;
+      	const time = b.dataset.time.split(':')
+            .map(part => parseFloat(part));
+        a += (time[0]*60 + time[1]);
+        return a;
+      }, 0);
+  console.log(videos3);
 </script>
 </body>
 </html>

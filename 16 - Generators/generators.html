@@ -7,34 +7,50 @@
 <body>
 <script>
   function* listPeople() {
-    let i = 0;
-    yield i;
-    i++;
-    yield i;
-    i++;
-    yield i;
+  	yield 'Wes';
+  	yield 'Kait';
+  	yield 'Snickers';
   }
 
   const people = listPeople();
 
-  const inventors = [
-    { first: 'Albert', last: 'Einstein', year: 1879 },
-    { first: 'Isaac', last: 'Newton', year: 1643 },
-    { first: 'Galileo', last: 'Galilei', year: 1564 },
-    { first: 'Marie', last: 'Curie', year: 1867 },
-    { first: 'Johannes', last: 'Kepler', year: 1571 },
-    { first: 'Nicolaus', last: 'Copernicus', year: 1473 },
-    { first: 'Max', last: 'Planck', year: 1858 },
-  ];
+	function callNext(gen) {
+     const {value, done} = gen.next();
+		console.log(value);
+		console.log(done);
+		if (!done) callNext(gen);
+	}
 
-  function* loop(arr) {
-    console.log(inventors);
-    for (const item of arr) {
-      yield item;
+	function *dynamicYield() {
+		let i = 0;
+		yield i; // yields 0
+		i++;
+		yield i; // yields 1
+		i++;
+		yield i; // yields 2
     }
-  }
 
-  const inventorGen = loop(inventors);
+      const newYield = dynamicYield();
+
+	const inventors = [
+		{ first: 'Albert', last: 'Einstein', year: 1879 },
+		{ first: 'Isaac', last: 'Newton', year: 1643 },
+		{ first: 'Galileo', last: 'Galilei', year: 1564 },
+		{ first: 'Marie', last: 'Curie', year: 1867 },
+		{ first: 'Johannes', last: 'Kepler', year: 1571 },
+		{ first: 'Nicolaus', last: 'Copernicus', year: 1473 },
+		{ first: 'Max', last: 'Planck', year: 1858 },
+	];
+
+	// this will help us write our yields statements then we can call next on inventorGen
+	function* loop(arr) {
+		for (const item of arr) {
+			yield item;
+        }
+    }
+
+    const inventorGen = loop(inventors);
+
 
 
 </script>

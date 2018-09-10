@@ -8,5 +8,5 @@
     "no-console": 0,
     "no-unused-vars": 1
   },
-  "plugins": ["html", "markdown"]
+//  "plugins": ["html", "markdown"]
 }

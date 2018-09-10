@@ -7,15 +7,19 @@
 <body>
 <script>
   class MovieCollection extends Array {
-    constructor(name, ...items) {
-      super(...items);
-      this.name = name;
+  	constructor(name, ...items) {
+  		super(...items);
+  		this.name = name;
     }
     add(movie) {
-      this.push(movie);
+  		this.push(movie);
     }
     topRated(limit = 10) {
-      return this.sort((a, b) => (a.stars > b.stars ? -1 : 1)).slice(0, limit);
+  		return this // this is the MovieCollection which is an array
+            .sort((a,b) => {
+  		      return a.stars>b.stars ? -1 : 1;
+             })
+            .slice(0, limit);
     }
   }
 
@@ -28,6 +32,14 @@
 
   movies.add({ name: 'Titanic', stars: 5 });
 
+
+  for (const movie in movies) {
+  	console.log(movie);
+  }
+
+  for (const movie of movies) {
+  	console.log(movie);
+  }
 </script>
 </body>
 </html>

@@ -5,9 +5,10 @@
   <title>System JS</title>
 </head>
 <body>
-  <script src="https://jspm.io/system@0.19.js"></script>
-  <script>
-
+  <script src="https://jspm.io/system@0.19.34.js"></script>
+  <script type="module">
+    System.config({ transpiler: 'babel' });
+    System.import('./main.js');
   </script>
 </body>
 </html>

@@ -8,16 +8,16 @@
 <script>
   const person = { name: 'Wes', age: 100 };
   const personProxy = new Proxy(person, {
-    get(target, name) {
-      // console.log('someone is asking for ', target, name);
-      return target[name].toUpperCase();
+    get(target, property) {
+    	console.log('someone is asking for', target, property);
+    	return target[property].toUpperCase();
     },
-    set(target, name, value) {
-      if(typeof value === 'string') {
-        target[name] = value.trim().toUpperCase() + '✂️';
-      }
+    set(target, key, value) {
+    	if (typeof value === 'string') {
+    		target[key] = value.trim().toUpperCase() + '💄';
+        }
     }
-  });
+  })
 
   personProxy.name = 'Wesley';
 </script>

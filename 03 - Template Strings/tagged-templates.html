@@ -13,8 +13,11 @@
 <script>
   function highlight(strings, ...values) {
     let str = '';
-    strings.forEach((string, i) => {
-      str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
+    // strings.forEach((string, i) => {
+    //   str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
+    // });
+    values.forEach((value, i) => {
+      str += `${strings[i]} <span class="hl">${value}</span>`;
     });
     return str;
   }

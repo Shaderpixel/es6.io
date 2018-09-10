@@ -62,20 +62,50 @@
 
   <script>
     const box = document.querySelector('.box');
+
+
+    /**
+     * Wes's Solution using ES6 destructuring
+    **/
     box.addEventListener('click', function() {
       let first = 'opening';
       let second = 'open';
 
-      if(this.classList.contains(first)) {
-        [first, second] = [second, first];
+      if (this.classList.contains(first)) {
+      	[first, second] = [second, first];
       }
 
       this.classList.toggle(first);
       setTimeout(() => {
-        console.log(this);
-        this.classList.toggle(second);
+      	console.log(this);
+      	this.classList.toggle(second);
       }, 500);
+
     });
+
+
+    /**
+     * My Solution using transitionend event
+     * */
+
+    // box.addEventListener('click', function () {
+    // 	if (this.classList.contains('open')) {
+    // 		this.classList.toggle('open');
+    //     } else {
+    //         this.classList.toggle('opening');
+    //     }
+    // })
+    // box.addEventListener('transitionend', function(e) {
+    // 	console.log(e.propertyName);
+    //     if (this.classList.contains('opening') && (!this.classList.contains('open')) && e.propertyName ===
+    //         'transform') {
+    //       this.classList.toggle('opening');
+    //     } else if (this.classList.contains('opening') && (!this.classList.contains('open')) && e.propertyName ===
+		// 				'height'){
+    //         if (e.propertyName !== 'height') return;
+    //         this.classList.toggle('open');
+    //     }
+    // })
   </script>
 
 </body>

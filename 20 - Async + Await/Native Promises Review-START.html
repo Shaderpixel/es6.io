@@ -9,6 +9,27 @@
 
 <body>
   <script>
+    // fetch('htt://api.github.com/users/wesbos')
+		//     .then( res => res.json())
+		//     .then( res => console.log(res))
+		//     .catch( err => console.error(err));
+
+    const video = document.querySelector('video');
+
+    navigator.mediaDevices.getUserMedia({ video: true})
+        .then( mediaStream => {
+          video.srcObject = mediaStream;
+          // video.src = window.URL.createObjectURL(mediaStream);
+          video.load();
+          video.play();
+        })
+        .catch( err => {
+        	if (err.name === 'NotAllowedError') {
+        		console.error(`${err.message}, you must allow web cam for this page to work`)
+            } else {
+        		console.error(err);
+            }
+        });
 
   </script>
 </body>
