@@ -3,3 +3,5 @@
 # ES6 for Everyone Starter Files
 
 Everything you need to Learn ES6 over at [ES6.io](https://ES6.io)
+
+The code in these files are from my own attempt at following the workshop. 
